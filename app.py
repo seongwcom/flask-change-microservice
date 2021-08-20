@@ -38,6 +38,12 @@ def changeroute(dollar, cents):
     result = change(float(amount))
     return jsonify(result)
 
+@app.route('/krw/<dollar>/<cents>')
+def change_krw(dollar, cents):
+    usd = float(f"{dollar}.{cents}")
+    krw = usd * 1150
+    print(f"Exchange ${dollar}.{cents} to {krw} won")
+    return jsonify(krw)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
